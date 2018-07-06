@@ -24,7 +24,7 @@ namespace PriceCalculation.Tests
                 basket.Add(product);
             }
 
-            var totalPrice = calculator.GetTotal();
+            var totalPrice = calculator.GetTotal(basket);
 
             Assert.AreEqual(totalPrice, 2.95m);
         }
