@@ -24,9 +24,10 @@ namespace PriceCalculation.Tests
                 basket.Add(product);
             }
 
-            var totalPrice = calculator.GetTotal(basket);
+            var checkout = calculator.Calculate(basket);
+            var result = checkout.ProductsTotal - checkout.OfferTotal;
 
-            Assert.AreEqual(totalPrice, 2.95m);
+            Assert.AreEqual(result, 2.95m);
         }
 
         [TestMethod]
@@ -37,9 +38,10 @@ namespace PriceCalculation.Tests
             var basket = new Basket();
             basket.Add(new Product() { Name = "milk", Quantity = 4, Price = 1.15m });
 
-            var totalPrice = calculator.GetTotal(basket);
+            var checkout = calculator.Calculate(basket);
+            var result = checkout.ProductsTotal - checkout.OfferTotal;
 
-            Assert.AreEqual(totalPrice, 3.45m);
+            Assert.AreEqual(result, 3.45m);
 
         }
 
@@ -52,9 +54,9 @@ namespace PriceCalculation.Tests
             basket.Add(new Product() { Name = "butter", Quantity = 2, Price = 0.80m });
             basket.Add(new Product() { Name = "bread", Quantity = 2, Price = 1.00m });
 
-            var totalPrice = calculator.GetTotal(basket);
-
-            Assert.AreEqual(totalPrice, 3.10m);
+            var checkout = calculator.Calculate(basket);
+            var result = checkout.ProductsTotal - checkout.OfferTotal;
+            Assert.AreEqual(result, 3.10m);
 
         }
 
@@ -76,9 +78,10 @@ namespace PriceCalculation.Tests
                 basket.Add(product);
             }
 
-            var totalPrice = calculator.GetTotal(basket);
+            var checkout = calculator.Calculate(basket);
+            var result = checkout.ProductsTotal - checkout.OfferTotal;
 
-            Assert.AreEqual(totalPrice, 9.00m);
+            Assert.AreEqual(result, 9.00m);
         }
     }
 }

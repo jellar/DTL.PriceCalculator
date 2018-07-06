@@ -11,10 +11,16 @@ namespace PriceCalculation
             _offerFactory = new OfferFactory();
         }
 
-        public decimal GetTotal(Basket basket)
+        public Checkout Calculate(Basket basket)
         {
-            var discount = basket.Products.Select(product => _offerFactory.GetOffer(product)).Where(offer => offer != null).Sum(offer => offer.GetTotalOffer(basket));
-            return basket.Products.Sum(p => p.Price * p.Quantity) - discount;
+            var checkout = new Checkout
+            {
+                Products = basket.Products,
+                ProductsTotal = basket.Products.Sum(p => p.Price * p.Quantity),
+                OfferTotal = basket.Products.Select(product => _offerFactory.GetOffer(product))
+                    .Where(offer => offer != null).Sum(offer => offer.GetTotalOffer(basket))
+            };
+            return checkout;
         }
     }
 }

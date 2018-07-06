@@ -2,6 +2,6 @@
 {
     public interface ICalculator
     {
-        decimal GetTotal(Basket basket);
+        Checkout Calculate(Basket basket);
     }
 }
